@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A simple conversion app">
+    <meta name="theme-color" content="#2F3BA2" />
+    <title>Xchange-UI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <!-- <link rel="manifest" href="./site.webmanifest"> -->
+
+    <script src="./scripts/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navigation">            
+            <div class="hamburger">
+                <div class="first-stroke"></div>
+                <div class="second-stroke"></div>
+                <div class="third-stroke"></div>
+            </div>
+            <div class="header-icon">
+                <img src="https://img.icons8.com/dusk/64/000000/administrator-male.png">
+            </div>
+        </nav>
+        <h1 class="page-title">Xchange-UI</h1>
+        <p>Get live conversion rates</p>
+        
+        <input type="text" name="user-input" id="user-input">
+    </header>
+    <main>
+        <div class="xchange-type">
+            <div class="col-auto my-1">
+                <!-- <label for="conversion" class="mr-sm-2">Conversion</label> -->
+                <select name="conversion" id="conversion" class="custom-select my-1 mr-sm-2">
+                    <option value="currency" selected>currency</option>
+                    <option value="weight">weight</option>
+                    <option value="size">size</option>
+                    <option value="volume">volume</option>
+                    <option value="crypto">crypto</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="select-parameters">
+            <div class="form-row align-items-center">
+                
+                <div class="col-auto my-1">
+                    <!-- <label for="primary-currency" class="mr-sm-2">Primary</label> -->
+                    <select name="primary-currency" id="primary-currency" class="custom-select my-1 mr-sm-2">
+                        <option value="USD" selected>USD</option>
+                        <option value="NGN">NGN</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CAD">CAD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+
+                <div class="arrow">
+                    <i class="fas fa-arrows-alt-h"></i>
+                </div>
+
+                <div class="col-auto my-1">
+                    <!-- <label for="primary-currency" class="mr-sm-2">Primary</label> -->
+                    <select name="target-currency" id="target-currency" class="custom-select my-1 mr-sm-2">
+                        <option value="NGN" selected>NGN</option>
+                        <option value="USD">USD</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CAD">CAD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+
+        </div>
+
+        <section class="page-feed">
+            <p>Recent conversions</p>
+
+            <div class="feed">
+                <p class="feed-title">currency</p>
+                <div class="feed-content">
+                    <img class="country-flag" src="./assets/svg/usa.svg" alt="USA flag">
+                    <p>USD (200)</p>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                    <img class="country-flag" src="./assets/svg/nigeria.svg" alt="USA flag">
+                    <p>NGN (72498.38)</p>
+                </div>
+            </div>
+            <div class="feed"></div>
+            <div class="feed"></div>
+            <div class="feed"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Developed with <i class="fas fa-heart"></i> by: Unorthodev ®</p>
+        <div class="contact">
+            <i class="fab fa-github"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
