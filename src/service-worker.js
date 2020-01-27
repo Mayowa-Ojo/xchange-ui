@@ -2,6 +2,7 @@
 self.addEventListener('install', function(e) {
     console.log("service worker installed")
     // make sure SW doesn't shut6down before caching
+    /*
     e.waitUntil(
         // call the cache api
         caches.open('static')
@@ -22,6 +23,7 @@ self.addEventListener('install', function(e) {
                 // ])
         })
     )
+    */
 })
 
 // Listen to the activate event - fires when the user closes current tabs and reopens
