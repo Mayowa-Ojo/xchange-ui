@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Slab', sans-serif;
+}
+
 .header {
     width: 100%;
     height: 30vh;
@@ -6,22 +16,30 @@
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header .header-bottom {
+    margin: 0 auto;
 }
 
 .header #user-input {
     outline: none;
     border: 1px solid lightgrey;
     border-radius: 20px;
-    position: absolute;
-    top: 14em;
-    left: 5em;
+    position: relative;
+    top: 2em;
     height: 2.5em;
     padding: 0 12px;
+    z-index: 2; 
 }
 
 .navigation {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2em;
 }
 
 .navigation .hamburger {
@@ -73,8 +91,24 @@ header .page-title {
     font-weight: lighter;
 }
 
+header p {
+    color: white;
+}
+
+.header-top .slider {
+    width: 65px;
+    margin: 2em auto 0 auto;
+}
+
+.header-top .slider i {
+    color: white;
+    font-size: 0.8rem;
+    margin: 0.2em;
+}
+
 main {
     height: 58vh;
+    overflow: scroll;
 }
 
 main .xchange-type {
@@ -167,9 +201,7 @@ footer {
     height: 12vh;
     width: 100%;
     border-top: 1px solid lightsalmon;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
+    padding: 1em;
 }
 
 footer p {
