@@ -9,6 +9,7 @@
     <title>Xchange-UI</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="manifest" href="./manifest.json">
 
@@ -21,20 +22,31 @@
 </head>
 <body>
     <header class="header">
-        <nav class="navigation">            
-            <div class="hamburger">
-                <div class="first-stroke"></div>
-                <div class="second-stroke"></div>
-                <div class="third-stroke"></div>
+
+        <div class="header-top">
+            <nav class="navigation">            
+                <div class="hamburger">
+                    <div class="first-stroke"></div>
+                    <div class="second-stroke"></div>
+                    <div class="third-stroke"></div>
+                </div>
+                <div class="header-icon">
+                    <img src="https://img.icons8.com/dusk/64/000000/administrator-male.png">
+                </div>
+            </nav>
+            <h1 class="page-title">Xchange-UI</h1>
+            <p>Get live conversion rates</p>
+
+            <div class="slider">
+                <i class="fas fa-dot-circle"></i>
+                <i class="fas fa-dot-circle"></i>
+                <i class="fas fa-dot-circle"></i>
             </div>
-            <div class="header-icon">
-                <img src="https://img.icons8.com/dusk/64/000000/administrator-male.png">
-            </div>
-        </nav>
-        <h1 class="page-title">Xchange-UI</h1>
-        <p>Get live conversion rates</p>
+        </div>
         
-        <input type="text" name="user-input" id="user-input">
+        <div class="header-bottom">
+            <input type="text" name="user-input" id="user-input">
+        </div>
     </header>
     <main>
         <div class="xchange-type">
@@ -98,8 +110,26 @@
                     <p>NGN (72498.38)</p>
                 </div>
             </div>
-            <div class="feed"></div>
-            <div class="feed"></div>
+            <div class="feed">
+                <p class="feed-title">currency</p>
+                <div class="feed-content">
+                    <img class="country-flag" src="./assets/svg/canada.svg" alt="USA flag">
+                    <p>CAD (730)</p>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                    <img class="country-flag" src="./assets/svg/nigeria.svg" alt="USA flag">
+                    <p>NGN (200113.45)</p>
+                </div>
+            </div>
+            <div class="feed">
+                <p class="feed-title">currency</p>
+                <div class="feed-content">
+                    <img class="country-flag" src="./assets/svg/uk.svg" alt="USA flag">
+                    <p>GBP (65)</p>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                    <img class="country-flag" src="./assets/svg/nigeria.svg" alt="USA flag">
+                    <p>NGN (30671.68)</p>
+                </div>
+            </div>
             <div class="feed"></div>
         </section>
     </main>
