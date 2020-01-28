@@ -7,6 +7,8 @@ window.onload = function() {
             displayResult()
         }
     })
+
+    new SlideShow()
 }
 
 /*****************************************/
@@ -92,5 +94,116 @@ function validateUserInput(primary, target, query) {
 
     return {
         isValid: true
+    }
+}
+
+// - Slideshow
+/*
+function slideShow() {
+    const sliders = document.querySelectorAll('.slider i')
+
+    let firstInterval,
+        secondInterval,
+        thirdInterval;
+    let counter = 0
+
+    sliders.forEach(slider => {
+        timer(slider, [...sliders])
+    })
+
+    function timer(slider) {
+
+        if(slider.classList.value.includes('one')) {
+            const nextSlider = arguments[1][1]
+            const prevSlider = arguments[1][2]
+            
+            counter++
+            console.log(counter)
+
+            firstInterval = setInterval(function() {
+                slider.style.opacity = '0.4'
+                // set next slider opacity=1
+                nextSlider.style.opacity = '1'
+                // set prev slider opacity=0.4
+                prevSlider.style.opacity = '0.4'
+                // console.log(firstInterval)
+
+                clearInterval(thirdInterval)
+            }, 3000)
+        }
+
+        if(slider.classList.value.includes('two')) {
+            const nextSlider = arguments[1][2]
+            
+            counter++
+            console.log(counter)
+            
+            secondInterval = setInterval(function() {
+                slider.style.opacity = '0.4'
+                // set next slider to opacity=1
+                nextSlider.style.opacity = '1'
+
+                clearInterval(firstInterval)
+            }, 6000)
+        }
+            
+        if(slider.classList.value.includes('three')) {
+            const nextSlider = arguments[1][0]
+            
+            counter++
+            console.log(counter)
+            
+            thirdInterval = setInterval(function() {
+                slider.style.opacity = '0.4'
+                // set next slider opacity=1
+                nextSlider.style.opacity = '1'
+                
+                clearInterval(secondInterval)
+            }, 9000)
+        }
+    }
+}
+*/
+
+class SlideShow {
+    constructor() {
+        this.state = {
+            isRefreshing: true
+        }
+        this.sliders = [...document.querySelectorAll('.slider i')]
+
+        // this.timer = this.timer.bind(this)
+
+        this.timer()
+
+        console.log(`new class instance created: "SlideShow"`)
+    }
+
+    timer() {
+        setTimeout(function(sliders) {
+            sliders[0].style.opacity = '0.4'
+            sliders[1].style.opacity = '1'
+        }, 3000, this.sliders)
+
+        setTimeout(function(sliders) {
+            sliders[1].style.opacity = '0.4'
+            sliders[2].style.opacity = '1'
+        }, 6000, this.sliders)
+
+        setTimeout(function(sliders, state, refresh) {
+            sliders[2].style.opacity = '0.4'
+            sliders[0].style.opacity = '1'
+
+            // state.isRefreshing = true
+
+            refresh(state)
+        }, 9000, this.sliders, this.state, this.refresh)
+
+    }
+
+    refresh(state) {
+        if(state.isRefreshing) {
+            new SlideShow()
+        }
     }
 }
