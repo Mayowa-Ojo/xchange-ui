@@ -89,10 +89,12 @@ header .page-title {
     color: white;
     font-size: 1.8rem;
     font-weight: lighter;
+    text-align: center;
 }
 
 header p {
     color: white;
+    text-align: center;
 }
 
 .header-top .slider {
