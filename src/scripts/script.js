@@ -98,112 +98,70 @@ function validateUserInput(primary, target, query) {
 }
 
 // - Slideshow
-/*
-function slideShow() {
-    const sliders = document.querySelectorAll('.slider i')
-
-    let firstInterval,
-        secondInterval,
-        thirdInterval;
-    let counter = 0
-
-    sliders.forEach(slider => {
-        timer(slider, [...sliders])
-    })
-
-    function timer(slider) {
-
-        if(slider.classList.value.includes('one')) {
-            const nextSlider = arguments[1][1]
-            const prevSlider = arguments[1][2]
-            
-            counter++
-            console.log(counter)
-
-            firstInterval = setInterval(function() {
-                slider.style.opacity = '0.4'
-                // set next slider opacity=1
-                nextSlider.style.opacity = '1'
-                // set prev slider opacity=0.4
-                prevSlider.style.opacity = '0.4'
-                // console.log(firstInterval)
-
-                clearInterval(thirdInterval)
-            }, 3000)
-        }
-
-        if(slider.classList.value.includes('two')) {
-            const nextSlider = arguments[1][2]
-            
-            counter++
-            console.log(counter)
-            
-            secondInterval = setInterval(function() {
-                slider.style.opacity = '0.4'
-                // set next slider to opacity=1
-                nextSlider.style.opacity = '1'
-
-                clearInterval(firstInterval)
-            }, 6000)
-        }
-            
-        if(slider.classList.value.includes('three')) {
-            const nextSlider = arguments[1][0]
-            
-            counter++
-            console.log(counter)
-            
-            thirdInterval = setInterval(function() {
-                slider.style.opacity = '0.4'
-                // set next slider opacity=1
-                nextSlider.style.opacity = '1'
-                
-                clearInterval(secondInterval)
-            }, 9000)
-        }
-    }
-}
-*/
 
 class SlideShow {
     constructor() {
         this.state = {
-            isRefreshing: true
+            isRefreshing: true,
+            timers: {
+                first: null,
+                second: null,
+                third: null
+            },
+            slideShowText: [
+                'Get live conversion rates',
+                'Over 200 live currencies',
+                'Mutliple conversion categories',
+            ]
         }
         this.sliders = [...document.querySelectorAll('.slider i')]
+        this.headerText = document.querySelector('header .header-top p')
 
         // this.timer = this.timer.bind(this)
 
         this.timer()
-
-        console.log(`new class instance created: "SlideShow"`)
     }
 
     timer() {
-        setTimeout(function(sliders) {
+        this.state.timers.first = setTimeout(function(sliders, textSlider, headerText, slideShowText) {
             sliders[0].style.opacity = '0.4'
             sliders[1].style.opacity = '1'
-        }, 3000, this.sliders)
 
-        setTimeout(function(sliders) {
+            // run text slider
+            textSlider(headerText, slideShowText[1])
+        }, 3000, this.sliders, this.textSlider, this.headerText, this.state.slideShowText)
+
+        this.state.timers.second = setTimeout(function(sliders, textSlider, headerText, slideShowText) {
             sliders[1].style.opacity = '0.4'
             sliders[2].style.opacity = '1'
-        }, 6000, this.sliders)
 
-        setTimeout(function(sliders, state, refresh) {
+            // run text slider
+            textSlider(headerText, slideShowText[2])
+        }, 6000, this.sliders, this.textSlider, this.headerText, this.state.slideShowText)
+
+        this.state.timers.third = setTimeout(function(sliders, state, refresh, textSlider, headerText, slideShowText) {
             sliders[2].style.opacity = '0.4'
             sliders[0].style.opacity = '1'
 
-            // state.isRefreshing = true
-
+            // run text slider
+            textSlider(headerText, slideShowText[0])
+            // refresh the slideshow
             refresh(state)
-        }, 9000, this.sliders, this.state, this.refresh)
-
+        }, 9000, this.sliders, this.state, this.refresh, this.textSlider, this.headerText, this.state.slideShowText)
     }
 
     refresh(state) {
+        // clear previous timeouts
+        clearTimeout(state.timers.first)
+        clearTimeout(state.timers.second)
+        clearTimeout(state.timers.third)
+        
         if(state.isRefreshing) {
             new SlideShow()
         }
+    }
+
+    textSlider(element, slideShowText) {
+        element.textContent = slideShowText
     }
 }
