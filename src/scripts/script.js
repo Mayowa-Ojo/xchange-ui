@@ -170,7 +170,7 @@ class SlideShow {
 // cache recent conversions
 class CacheStorage {
     constructor() {
-        this.getCurrentConversion = this.getCurrentConversion.bind(this)
+        // this.getCurrentConversion = this.getCurrentConversion.bind(this)
         // this.checkForNewData = this.checkForNewData.bind(this)
         // this.addEventListener = this.addEventListener.bind(this)
         
@@ -210,7 +210,7 @@ class CacheStorage {
     addEventListener() {
         this.userInput = document.querySelector('#user-input')
 
-        this.userInput.addEventListener('keypress', this.checkForNewData)
+        this.userInput.addEventListener('keypress', this.checkForNewData.bind(this))
     }
 
     checkForNewData(e) {
@@ -222,24 +222,31 @@ class CacheStorage {
             // check if conversion is in cache
             if(!this.checkForDuplicate(cacheStorage, currentConversion).isDuplicate) {
                 // set cache storage
-                if(!this.getCacheStorage()) {
-                    this.setCacheStorage(currentConversion, true)
-                } else this.setCacheStorage(currentConversion, false)
+                if(cacheStorage) {
+                    this.setCacheStorage(currentConversion, false)
+                } else this.setCacheStorage(currentConversion, true)
             }
         }
     }
 
     checkForDuplicate(cache, entry) {
         let result = {}
-        cache.forEach(item => {
-            const a = item.base == entry.base
-            const b = item.target == entry.target
-            const c = item.input == entry.input
 
-            if(a && b && c) {
-                result.isDuplicate = a && b && c
-            }
-        })
+        if(cache) {
+            cache.forEach(item => {
+                const a = item.base == entry.base
+                const b = item.target == entry.target
+                const c = item.input == entry.input
+                
+                if(a && b && c) {
+                    result.isDuplicate = a && b && c
+                } else {
+                    result.isDuplicate = false
+                }
+            })
+        } else {
+            result.isDuplicate = false
+        }
 
         return result
     }
