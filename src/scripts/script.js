@@ -9,6 +9,7 @@ window.onload = function() {
     })
 
     new SlideShow()
+    new CacheStorage()
 }
 
 /*****************************************/
@@ -163,5 +164,87 @@ class SlideShow {
 
     textSlider(element, slideShowText) {
         element.textContent = slideShowText
+    }
+}
+
+// cache recent conversions
+class CacheStorage {
+    constructor() {
+        this.getCurrentConversion = this.getCurrentConversion.bind(this)
+        // this.checkForNewData = this.checkForNewData.bind(this)
+        // this.addEventListener = this.addEventListener.bind(this)
+        
+        this.addEventListener()
+    }
+
+    getCurrentConversion() {
+        const base = document.querySelector('#primary-currency').value
+        const target = document.querySelector('#target-currency').value
+        const input = this.userInput.value
+
+        return {
+            base,
+            target,
+            input
+        }
+    }
+
+    getCacheStorage() {
+        const data = window.localStorage.getItem('cache')
+        
+        if(data) {
+            return JSON.parse(data)
+        } else return false
+    }
+
+    setCacheStorage(data, isNewData) {
+        if(isNewData) {
+            window.localStorage.setItem('cache', JSON.stringify([data]))
+        } else {
+            const cacheData = this.getCacheStorage()
+            cacheData.push(data)
+            window.localStorage.setItem('cache', JSON.stringify(cacheData))
+        }
+    }
+
+    addEventListener() {
+        this.userInput = document.querySelector('#user-input')
+
+        this.userInput.addEventListener('keypress', this.checkForNewData)
+    }
+
+    checkForNewData(e) {
+        if(e.which === 13) {
+            console.log("Checking for new data...")
+            
+            const currentConversion = this.getCurrentConversion()
+            const cacheStorage = this.getCacheStorage()
+            // check if conversion is in cache
+            if(!this.checkForDuplicate(cacheStorage, currentConversion).isDuplicate) {
+                // set cache storage
+                if(!this.getCacheStorage()) {
+                    this.setCacheStorage(currentConversion, true)
+                } else this.setCacheStorage(currentConversion, false)
+            }
+        }
+    }
+
+    checkForDuplicate(cache, entry) {
+        let result = {}
+        cache.forEach(item => {
+            const a = item.base == entry.base
+            const b = item.target == entry.target
+            const c = item.input == entry.input
+
+            if(a && b && c) {
+                result.isDuplicate = a && b && c
+            }
+        })
+
+        return result
+    }
+
+    validateConversion() {
+
     }
 }
