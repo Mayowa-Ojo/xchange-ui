@@ -233,17 +233,7 @@ class CacheStorage {
         let result = {}
 
         if(cache) {
-            cache.forEach(item => {
-                const a = item.base == entry.base
-                const b = item.target == entry.target
-                const c = item.input == entry.input
-                
-                if(a && b && c) {
-                    result.isDuplicate = a && b && c
-                } else {
-                    result.isDuplicate = false
-                }
-            })
+            result.isDuplicate = cache.some(item => item.base == entry.base && item.target == entry.target && item.input == entry.input)
         } else {
             result.isDuplicate = false
         }
