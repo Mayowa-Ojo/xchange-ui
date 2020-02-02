@@ -55,8 +55,16 @@ function displayResult() {
         const { result } = runConversion(query, rate)
         const outputDisplay = document.querySelector('.result')
         outputDisplay.innerText = result
+
+        clearInput()
         console.log(result)
     })
+}
+
+function clearInput() {
+    const input = document.querySelector('#user-input')
+
+    input.value = ''
 }
 
 function getUserInput() {
