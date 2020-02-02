@@ -20,7 +20,7 @@ class CacheStorage {
         }
     }
 
-    getCacheStorage() {
+    static getCacheData() {
         const data = window.localStorage.getItem('cache')
         
         if(data) {
@@ -28,11 +28,11 @@ class CacheStorage {
         } else return false
     }
 
-    setCacheStorage(data, isNewData) {
+    setCacheData(data, isNewData) {
         if(isNewData) {
             window.localStorage.setItem('cache', JSON.stringify([data]))
         } else {
-            const cacheData = this.getCacheStorage()
+            const cacheData = CacheStorage.getCacheData()
             cacheData.push(data)
             window.localStorage.setItem('cache', JSON.stringify(cacheData))
         }
@@ -49,13 +49,13 @@ class CacheStorage {
             console.log("Checking for new data...")
             
             const currentConversion = this.getCurrentConversion()
-            const cacheStorage = this.getCacheStorage()
+            const cacheStorage = CacheStorage.getCacheData()
             // check if conversion is in cache
             if(!this.checkForDuplicate(cacheStorage, currentConversion).isDuplicate) {
                 // set cache storage
                 if(cacheStorage) {
-                    this.setCacheStorage(currentConversion, false)
-                } else this.setCacheStorage(currentConversion, true)
+                    this.setCacheData(currentConversion, false)
+                } else this.setCacheData(currentConversion, true)
             } else console.log('Cache duplicate found!')
         }
     }
