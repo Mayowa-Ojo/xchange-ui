@@ -225,7 +225,7 @@ class CacheStorage {
                 if(cacheStorage) {
                     this.setCacheStorage(currentConversion, false)
                 } else this.setCacheStorage(currentConversion, true)
-            }
+            } else console.log('Cache duplicate found!')
         }
     }
 
