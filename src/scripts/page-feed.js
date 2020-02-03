@@ -6,13 +6,6 @@ class PageFeed {
         this.listElement = document.querySelector('.feed-container')
 
         this.populateFeed()
-        this.addEventListener()
-    }
-
-    addEventListener() {
-        const userInput = document.querySelector('#user-input')
-
-        userInput.addEventListener('keypress', this.refreshFeed.bind(this))
     }
 
     populateFeed() {
@@ -43,13 +36,11 @@ class PageFeed {
         this.listElement.appendChild(listItem)
     }
 
-    refreshFeed(e) {
-        if(e.which === 13) {
-            // remove previous feed list
-            this.listElement.innerHTML = ''
-            // add updated feed
-            this.populateFeed()
-        }
+    refreshFeed() {
+        // remove previous feed list
+        this.listElement.innerHTML = ''
+        // add updated feed
+        this.populateFeed()
     }
 }
 
