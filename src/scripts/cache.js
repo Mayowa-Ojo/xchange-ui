@@ -1,9 +1,8 @@
 // cache recent conversions
 class CacheStorage {
     constructor() {
-        // this.getCurrentConversion = this.getCurrentConversion.bind(this)
-        // this.checkForNewData = this.checkForNewData.bind(this)
-        // this.addEventListener = this.addEventListener.bind(this)
+        this.userInput = document.querySelector('#user-input')
+        this.result = document.querySelector('.result')
         
         this.addEventListener()
     }
@@ -12,11 +11,13 @@ class CacheStorage {
         const base = document.querySelector('#primary-currency').value
         const target = document.querySelector('#target-currency').value
         const input = this.userInput.value
+        const result = document.querySelector('.result').innerText
 
         return {
             base,
             target,
-            input
+            input,
+            result
         }
     }
 
@@ -39,8 +40,6 @@ class CacheStorage {
     }
 
     addEventListener() {
-        this.userInput = document.querySelector('#user-input')
-
         this.userInput.addEventListener('keypress', this.checkForNewData.bind(this))
     }
 
