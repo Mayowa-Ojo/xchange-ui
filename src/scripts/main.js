@@ -1,5 +1,6 @@
 import SlideShow from './slideshow.js'
 import CacheStorage from './cache.js'
+import PageFeed from './page-feed.js'
 
 window.onload = function() {
     console.log('Loading...')
@@ -13,6 +14,7 @@ window.onload = function() {
 
     new SlideShow()
     new CacheStorage()
+    new PageFeed()
 }
 
 /*****************************************/
@@ -27,7 +29,7 @@ if('serviceWorker' in navigator) {
 
 const API_KEY = "c7229232ddf7bc2c77dc"
 
-async function fetchData(primary, target) {
+async function fetchData(primary, target) { 
     const BASE_URL = `https://free.currconv.com/api/v7/convert?q=${primary}_${target},${target}_${primary}&compact=ultra&apiKey=${API_KEY}`
     const url = BASE_URL
 
