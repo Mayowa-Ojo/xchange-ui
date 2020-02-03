@@ -14,19 +14,20 @@ window.onload = function() {
 
     new SlideShow()
     new CacheStorage()
-    new PageFeed()
 }
 
 /*****************************************/
 // Register service worker
 if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js')
-        .then(function() {
-            console.log("service worker registered")
-        })
+    .then(function() {
+        console.log("service worker registered")
+    })
 }
 /*****************************************/
 
+// Global variables
+const pageFeed = new PageFeed()
 const API_KEY = "c7229232ddf7bc2c77dc"
 
 async function fetchData(primary, target) { 
@@ -60,6 +61,9 @@ function displayResult() {
         const { result } = runConversion(query, rate)
         const outputDisplay = document.querySelector('.result')
         outputDisplay.innerText = result
+
+        // refresh page feed
+        pageFeed.refreshFeed()
 
         clearInput()
         console.log(result)
