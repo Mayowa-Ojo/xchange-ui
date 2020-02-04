@@ -13,7 +13,6 @@ window.onload = function() {
     })
 
     new SlideShow()
-    new CacheStorage()
 }
 
 /*****************************************/
@@ -28,6 +27,7 @@ if('serviceWorker' in navigator) {
 
 // Global variables
 const pageFeed = new PageFeed()
+const cacheStorage = new CacheStorage
 const API_KEY = "c7229232ddf7bc2c77dc"
 
 async function fetchData(primary, target) { 
@@ -62,6 +62,8 @@ function displayResult() {
         const outputDisplay = document.querySelector('.result')
         outputDisplay.innerText = result
 
+        // update cache storage
+        cacheStorage.checkForNewData()
         // refresh page feed
         pageFeed.refreshFeed()
 
