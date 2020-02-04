@@ -8,26 +8,34 @@ class PageFeed {
         this.populateFeed()
     }
 
+    getCountryCodes() {        
+        // read json file
+        return fetch('/xchange-ui/src/assets/data/country-code.json')
+            .then(res => res.json())
+            .then(data => data)
+            .catch(err => console.error(err))
+    }
+
     populateFeed() {
         // get cache data
         const cacheData = CacheStorage.getCacheData()
         console.log(cacheData)
-
-        // loop through cache data and call generate function
-        for(let i = cacheData.length-1; i >= 0; i--) {
-            this.generateFeedItem(cacheData[i])
-            console.log(`Populating feed container...${i}`)
-        }
+        this.getCountryCodes().then(countryCodes => {
+            // loop through cache data and call generate function
+            for(let i = cacheData.length-1; i >= 0; i--) {
+                this.generateFeedItem(cacheData[i], countryCodes)
+            }
+        })
     }
 
-    generateFeedItem(data) {
+    generateFeedItem(data, countryCodes) {
         const inner_html = `<p class="feed-title">currency</p>
             <div class="feed-content">
-                <img class="country-flag" src="./assets/svg/eu.svg" alt="USA flag">
+                <img class="country-flag" src="./assets/svg/${countryCodes[data.base]}.svg" alt="${countryCodes[data.base]} flag">
                 <p>${data.base} (${data.input})</p>
                 <i class="fas fa-long-arrow-alt-right"></i>
-                <img class="country-flag" src="./assets/svg/nigeria.svg" alt="USA flag">
-                <p>${data.target} (30671.68)</p>
+                <img class="country-flag" src="./assets/svg/${countryCodes[data.target]}.svg" alt="${countryCodes[data.target]} flag">
+                <p>${data.target} (${data.result})</p>
             </div>`
         const listItem = document.createElement('li')
 
