@@ -4,7 +4,7 @@ class CacheStorage {
         this.userInput = document.querySelector('#user-input')
         this.result = document.querySelector('.result')
         
-        this.addEventListener()
+        // this.addEventListener()
     }
 
     getCurrentConversion() {
@@ -39,24 +39,22 @@ class CacheStorage {
         }
     }
 
-    addEventListener() {
-        this.userInput.addEventListener('keypress', this.checkForNewData.bind(this))
-    }
+    // addEventListener() {
+    //     this.userInput.addEventListener('keypress', this.checkForNewData.bind(this))
+    // }
 
-    checkForNewData(e) {
-        if(e.which === 13) {
-            console.log("Checking for new data...")
-            
-            const currentConversion = this.getCurrentConversion()
-            const cacheStorage = CacheStorage.getCacheData()
-            // check if conversion is in cache
-            if(!this.checkForDuplicate(cacheStorage, currentConversion).isDuplicate) {
-                // set cache storage
-                if(cacheStorage) {
-                    this.setCacheData(currentConversion, false)
-                } else this.setCacheData(currentConversion, true)
-            } else console.log('Cache duplicate found!')
-        }
+    checkForNewData() {
+        console.log("Checking for new data...")
+        
+        const currentConversion = this.getCurrentConversion()
+        const cacheStorage = CacheStorage.getCacheData()
+        // check if conversion is in cache
+        if(!this.checkForDuplicate(cacheStorage, currentConversion).isDuplicate) {
+            // set cache storage
+            if(cacheStorage) {
+                this.setCacheData(currentConversion, false)
+            } else this.setCacheData(currentConversion, true)
+        } else console.log('Cache duplicate found!')
     }
 
     checkForDuplicate(cache, entry) {
@@ -69,10 +67,6 @@ class CacheStorage {
         }
 
         return result
-    }
-
-    validateConversion() {
-
     }
 }
 
