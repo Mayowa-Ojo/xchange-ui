@@ -34,8 +34,10 @@ class CacheStorage {
             window.localStorage.setItem('cache', JSON.stringify([data]))
         } else {
             const cacheData = CacheStorage.getCacheData()
-            cacheData.push(data)
-            window.localStorage.setItem('cache', JSON.stringify(cacheData))
+            // check if cache limit is reached
+            const updatedCache = this.checkCacheLimit(cacheData)
+            updatedCache.push(data)
+            window.localStorage.setItem('cache', JSON.stringify(updatedCache))
         }
     }
 
@@ -67,6 +69,14 @@ class CacheStorage {
         }
 
         return result
+    }
+
+    checkCacheLimit(cache) {
+        if(cache.length >= 15) {
+            cache.shift()
+
+            return cache
+        } else return cache
     }
 }
 
