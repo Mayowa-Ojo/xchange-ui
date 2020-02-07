@@ -32,10 +32,10 @@ class PageFeed {
         const inner_html = `<p class="feed-title">currency</p>
             <div class="feed-content">
                 <img class="country-flag" src="./assets/svg/${countryCodes[data.base]}.svg" alt="${countryCodes[data.base]} flag">
-                <p>${data.base} (${data.input})</p>
+                <p> (${data.input})</p>
                 <i class="fas fa-long-arrow-alt-right"></i>
                 <img class="country-flag" src="./assets/svg/${countryCodes[data.target]}.svg" alt="${countryCodes[data.target]} flag">
-                <p>${data.target} (${data.result})</p>
+                <p> (${data.result})</p>
             </div>`
         const listItem = document.createElement('li')
 
