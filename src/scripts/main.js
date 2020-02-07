@@ -60,7 +60,7 @@ function displayResult() {
         // console.log(typeof rate)
         const { result } = runConversion(query, rate)
         const outputDisplay = document.querySelector('.result')
-        outputDisplay.innerText = result
+        outputDisplay.innerText = JSON.parse(result).toLocaleString('ja-JP', {style: 'currency', currency: `${target}`})
 
         // update cache storage
         cacheStorage.checkForNewData()
@@ -68,7 +68,6 @@ function displayResult() {
         pageFeed.refreshFeed()
 
         clearInput()
-        console.log(result)
     })
 }
 

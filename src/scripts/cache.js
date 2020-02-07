@@ -10,7 +10,7 @@ class CacheStorage {
     getCurrentConversion() {
         const base = document.querySelector('#primary-currency').value
         const target = document.querySelector('#target-currency').value
-        const input = this.userInput.value
+        const input = JSON.parse(this.userInput.value).toLocaleString('ja-JP', {style: 'currency', currency: `${base}`})
         const result = document.querySelector('.result').innerText
 
         return {
