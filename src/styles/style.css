@@ -10,11 +10,12 @@ ul {
 
 body {
     font-family: 'Roboto Slab', sans-serif;
+    height: 100vh;
 }
 
 .header {
     width: 100%;
-    height: 30vh;
+    min-height: 40%;
     padding: 0.5em;
     /* background: #E04A4A; */
     background: #E04A4A;  /* fallback for old browsers */
@@ -37,11 +38,9 @@ body {
     outline: none;
     border: 1px solid lightgrey;
     border-radius: 20px;
-    position: relative;
-    top: 2em;
     height: 2.5em;
     padding: 0 12px;
-    z-index: 2; 
+    transform: translateY(1.5em)
 }
 
 .navigation {
@@ -118,7 +117,7 @@ header p {
 }
 
 main {
-    height: 58vh;
+    min-height: 50%;
     overflow: scroll;
 }
 
@@ -209,7 +208,7 @@ main .select-parameters {
 }
 
 footer {
-    height: 12vh;
+    height: 10%;
     width: 100%;
     border-top: 1px solid lightsalmon;
     padding: 1em;
