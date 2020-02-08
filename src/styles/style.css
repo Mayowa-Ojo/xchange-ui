@@ -97,6 +97,7 @@ header .page-title {
     font-size: 1.8rem;
     font-weight: lighter;
     text-align: center;
+    margin-bottom: 0.5em;
 }
 
 header p {
@@ -105,7 +106,7 @@ header p {
 }
 
 .header-top .slider {
-    width: 65px;
+    width: 85px;
     margin: 2em auto 0 auto;
 }
 
