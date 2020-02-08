@@ -13,6 +13,7 @@ class SlideShow {
                 'Get live conversion rates',
                 'Over 200 live currencies',
                 'Mutliple conversion categories',
+                'View previous conversions'
             ]
         }
         this.sliders = [...document.querySelectorAll('.slider i')]
@@ -40,15 +41,23 @@ class SlideShow {
             textSlider(headerText, slideShowText[2])
         }, 6000, this.sliders, this.textSlider, this.headerText, this.state.slideShowText)
 
-        this.state.timers.third = setTimeout(function(sliders, state, refresh, textSlider, headerText, slideShowText) {
+        this.state.timers.third = setTimeout(function(sliders, textSlider, headerText, slideShowText) {
             sliders[2].style.opacity = '0.4'
+            sliders[3].style.opacity = '1'
+
+            // run text slider
+            textSlider(headerText, slideShowText[3])
+        }, 9000, this.sliders, this.textSlider, this.headerText, this.state.slideShowText)
+
+        this.state.timers.fourth = setTimeout(function(sliders, state, refresh, textSlider, headerText, slideShowText) {
+            sliders[3].style.opacity = '0.4'
             sliders[0].style.opacity = '1'
 
             // run text slider
             textSlider(headerText, slideShowText[0])
             // refresh the slideshow
             refresh(state)
-        }, 9000, this.sliders, this.state, this.refresh, this.textSlider, this.headerText, this.state.slideShowText)
+        }, 12000, this.sliders, this.state, this.refresh, this.textSlider, this.headerText, this.state.slideShowText)
     }
 
     refresh(state) {
@@ -56,6 +65,7 @@ class SlideShow {
         clearTimeout(state.timers.first)
         clearTimeout(state.timers.second)
         clearTimeout(state.timers.third)
+        clearTimeout(state.timers.fourth)
         
         if(state.isRefreshing) {
             new SlideShow()
