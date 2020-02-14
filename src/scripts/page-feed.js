@@ -1,4 +1,4 @@
-// Page feed class
+import { codes as countryCodes } from '../assets/data/country-code.js'
 import CacheStorage from './cache.js'
 
 class PageFeed {
@@ -8,24 +8,14 @@ class PageFeed {
         this.populateFeed()
     }
 
-    getCountryCodes() {        
-        // read json file
-        return fetch('/xchange-ui/src/assets/data/country-code.json')
-            .then(res => res.json())
-            .then(data => data)
-            .catch(err => console.error(err))
-    }
-
     populateFeed() {
         // get cache data
         const cacheData = CacheStorage.getCacheData()
         console.log(cacheData)
-        this.getCountryCodes().then(countryCodes => {
             // loop through cache data and call generate function
             for(let i = cacheData.length-1; i >= 0; i--) {
                 this.generateFeedItem(cacheData[i], countryCodes)
-            }
-        })
+        }
     }
 
     generateFeedItem(data, countryCodes) {
