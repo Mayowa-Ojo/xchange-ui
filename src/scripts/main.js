@@ -4,8 +4,17 @@ import PageFeed from './page-feed.js'
 
 window.onload = function() {
     console.log('Loading...')
-    fetchData('USD', 'NGN')
 
+    /*****************************************/
+    // Register service worker
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js')
+        .then(function() {
+            console.log("service worker registered")
+        })
+    }
+    /*****************************************/
+    
     document.querySelector('#user-input').addEventListener('keypress', function(e) {
         if(e.which == 13) {
             displayResult()
@@ -15,15 +24,6 @@ window.onload = function() {
     new SlideShow()
 }
 
-/*****************************************/
-// Register service worker
-if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js')
-    .then(function() {
-        console.log("service worker registered")
-    })
-}
-/*****************************************/
 
 // Global variables
 const pageFeed = new PageFeed()
