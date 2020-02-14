@@ -15,11 +15,9 @@ window.onload = function() {
     }
     /*****************************************/
     
-    document.querySelector('#user-input').addEventListener('keypress', function(e) {
-        if(e.which == 13) {
-            displayResult()
-        }
-    })
+    // listen for click and keypress events
+    addEventListener('keypress', document.querySelector('#user-input'))
+    addEventListener('click', document.querySelector('.header-bottom .submit-btn img'))
 
     new SlideShow()
 }
@@ -29,6 +27,20 @@ window.onload = function() {
 const pageFeed = new PageFeed()
 const cacheStorage = new CacheStorage
 const API_KEY = "c7229232ddf7bc2c77dc"
+
+function addEventListener(event, target) {
+    if(event == 'keypress') {
+        target.addEventListener('keypress', function(e) {
+            if(e.which == 13) {
+                displayResult()
+            }
+        })
+    } else if(event == 'click') {
+        target.addEventListener('click', function() {
+            displayResult()
+        })
+    }
+}
 
 async function fetchData(primary, target) { 
     const BASE_URL = `https://free.currconv.com/api/v7/convert?q=${primary}_${target},${target}_${primary}&compact=ultra&apiKey=${API_KEY}`
