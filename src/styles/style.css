@@ -151,7 +151,14 @@ main .xchange-type {
 
 .xchange-type select#conversion {
     font-size: 1.2rem;
+    width: 75%;
+    transform: translateX(1.2em);
 }
+
+.xchange-type label {
+    transform: translateX(1.9em);
+}
+
 main .select-parameters {
     width: 60%;
     margin: 0 auto;
