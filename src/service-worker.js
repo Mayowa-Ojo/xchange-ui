@@ -1,29 +1,17 @@
+self.importScripts('./assets/data/cache-assets.js')
+
 // Fire an event when service worker is installed
 self.addEventListener('install', function(e) {
     console.log("service worker installed")
     // make sure SW doesn't shut6down before caching
-    /*
     e.waitUntil(
         // call the cache api
         caches.open('static')
             .then(function(cache) {
-                cache.add('/')
-                cache.add('./index.html')
-                cache.add('./styles/style.css')
-                cache.add('./scripts/script.js')
-                cache.add('./assets/svg/canada.svg')
-                cache.add('./assets/svg/nigeria.svg')
-                cache.add('./assets/svg/usa.svg')
                 // we can also cache urls from external sites
-                // cache.addAll([
-                //     '/',
-                //     './index.html',
-                //     '/src/scripts/script.js',
-                //     '/src/styles/styles.css'
-                // ])
+                cache.addAll(assets)
         })
     )
-    */
 })
 
 // Listen to the activate event - fires when the user closes current tabs and reopens
@@ -46,7 +34,11 @@ self.addEventListener('fetch', function(e) {
                     return res
                 } else {
                     return fetch(e.request)
+                        .catch(err => {
+                            return caches.match('offline.html')
+                        })
                 }
             })
+            
     )
 })
