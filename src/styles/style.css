@@ -67,7 +67,7 @@ body {
     border-radius: 20px;
     height: 2.5em;
     padding: 0 12px;
-    transform: translateY(1.5em)
+    transform: translate(1em, 1.5em)
 }
 
 .navigation {
@@ -137,6 +137,17 @@ header p {
     font-size: 0.8rem;
     margin: 0.2em;
     opacity: 0.4;
+}
+
+.header-bottom .submit-btn {
+    display: inline-block;
+    background: #52d26f;
+    border-radius: 50%;
+    transform: translate(-1.4em, 1.38em);
+    width: 1.7em;
+    height: 1.6em;
+    padding-left: 1.7px;
+    cursor: pointer;
 }
 
 main {
