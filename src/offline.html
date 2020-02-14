@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Offline</title>
+</head>
+<body>
+   <h1>You're offline sir</h1>
+
+   <script>
+      if(navigator.onLine) {
+          console.log('not connected...')
+          window.location.href = "http://127.0.0.1:5500/xchange-ui/src/index.html"
+      }
+  </script>
+</body>
+</html>
