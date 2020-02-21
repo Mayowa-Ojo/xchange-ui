@@ -4,14 +4,25 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Offline</title>
+   <link rel="stylesheet" href="./styles/offline.css">
+   <script src="./scripts/offline.js"></script>
 </head>
 <body>
-   <h1>You're offline sir</h1>
+   <header class="header">
+      <p class="header-text">
+         You are cuurently offline. Please reload this page when you have a connection.
+      </p>
+      <img src="./assets/alert.svg" alt="alert icon">
+   </header>
+
+   <section class="site-logo">
+      <img src="./assets/logo.svg" alt="site_logo">
+   </section>
 
    <script>
       if(navigator.onLine) {
-          console.log('not connected...')
-          window.location.href = "http://127.0.0.1:5500/xchange-ui/src/index.html"
+         console.log('not connected...')
+         window.location.href = "http://127.0.0.1:5500/xchange-ui/src/index.html"
       }
   </script>
 </body>
