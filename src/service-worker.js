@@ -1,12 +1,14 @@
 self.importScripts('./assets/data/cache-assets.js')
 
+// globals
+const cacheName = 'pwa-static-v2'
 // Fire an event when service worker is installed
 self.addEventListener('install', function(e) {
     console.log("service worker installed")
     // make sure SW doesn't shut6down before caching
     e.waitUntil(
         // call the cache api
-        caches.open('static')
+        caches.open(cacheName)
             .then(function(cache) {
                 // we can also cache urls from external sites
                 cache.addAll(assets)
@@ -17,6 +19,11 @@ self.addEventListener('install', function(e) {
 // Listen to the activate event - fires when the user closes current tabs and reopens
 self.addEventListener('activate', function() {
     console.log("service worker activated")
+    // delete old cache if there's a new version
+    caches.keys().then(keys => {
+        // console.log(keys)
+        return Promise.all(keys.filter(key => key !== cacheName).map(key => caches.delete(key)))
+    })
 })
 
 // add caching functionality for offline capabilities
@@ -34,10 +41,13 @@ self.addEventListener('fetch', function(e) {
                     return res
                 } else {
                     return fetch(e.request)
-                        .catch(err => {
-                            return caches.match('offline.html')
-                        })
                 }
+            })
+            .catch(_ => {
+                if(e.request.url.indexOf('flag.svg') != -1) {
+                    return caches.match('./offline.html')
+                }
+                return caches.match('./offline.html')
             })
             
     )
