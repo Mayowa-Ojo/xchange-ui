@@ -1,7 +1,7 @@
 self.importScripts('./assets/data/cache-assets.js')
 
 // globals
-const cacheName = 'pwa-static-v2'
+const cacheName = 'pwa-static-v2.1.2'
 // Fire an event when service worker is installed
 self.addEventListener('install', function(e) {
     console.log("service worker installed")
